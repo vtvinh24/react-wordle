@@ -4,7 +4,7 @@ import Header from "./header/Header";
 
 const BaseLayout = () => {
   return (
-    <div>
+    <div id="base-layout">
       <Header />
       <main>
         <Outlet />
