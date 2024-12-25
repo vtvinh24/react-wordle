@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./ui/component/home/Home";
-import Game from "./ui/component/game/Game";
-import Leaderboard from "./ui/component/game/Leaderboard";
+import Home from "./ui/component/Home";
+import Game from "./ui/component/Game";
+import Leaderboard from "./ui/component/Leaderboard";
 import NotFoundPage from "./ui/component/error/404";
 import BaseLayout from "./ui/layout/BaseLayout";
 import GameLayout from "./ui/layout/GameLayout";
