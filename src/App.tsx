@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./ui/home/Home";
-import NotFoundPage from "./ui/404";
-function App() {
+import NotFoundPage from "./ui/components/error/404";
+import { FC } from "react";
+
+const App: FC = () => {
   return (
     <>
       <BrowserRouter>
@@ -13,4 +15,5 @@ function App() {
     </>
   );
 }
+
 export default App;
