@@ -8,7 +8,10 @@ interface GameContextProps {
 const GameContext = createContext<GameContextProps | undefined>(undefined);
 
 const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [state, setState] = useState<object>({});
+  const [state, setState] = useState<object>({
+    
+
+  });
 
   return <GameContext.Provider value={{ state, setState }}>{children}</GameContext.Provider>;
 };

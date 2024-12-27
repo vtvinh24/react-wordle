@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode";
 import React, { createContext, useState, ReactNode, useContext, useEffect } from "react";
 
 interface AuthContextProps {
@@ -27,9 +28,11 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     // On token change, get user id by decoding token
     // If token is expired, call requestToken()
-    const decodedToken = token ? JSON.parse(atob(token.split(".")[1])) : null;
+    if (!token) return;
+    const decodedToken = token ? jwtDecode(token) : null;
     const exp = decodedToken ? decodedToken.exp : 0;
     const currentTime = Date.now() / 1000;
+    if (!exp) return;
     if (exp < currentTime) {
       requestToken();
     } else {
