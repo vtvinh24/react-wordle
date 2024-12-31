@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "test/ui/component/game/Letter.test.tsx"]
+  "include": ["src", "src/ui/component/game/Letter.test.tsx"]
 }

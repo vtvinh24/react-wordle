@@ -1,15 +1,41 @@
-import * as React from "react";
+import React from "react";
+import { useLetter } from "../../../logic/hook/useLetter";
 
 interface LetterProps {
   letter: string;
 }
 
-export const Letter: React.FC<LetterProps> = ({ letter }) => {
-  return (
-    <div className="flex flex-col text-9xl text-center text-black whitespace-nowrap max-w-[292px] shadow-[0px_0px_32px_rgba(255,0,0,0.4)]">
-      <div className="px-16 w-full bg-lime-300 border-black border-solid aspect-square border-[16px]">
-        {letter}
-      </div>
-    </div>
-  );
+export const Letter: React.FC<LetterProps> = ({ letter = "X" }) => {
+  const parsedLetter = useLetter(letter);
+
+  const mockBgColor = "#545454";
+  const mockFgColor = "#000000";
+  const borderWidth = "2px";
+  const borderColor = "#000000";
+  const borderStyle = "solid";
+  const shadowColor = "#000000";
+  const shadowOffset = "2px";
+  const shadowBlur = "4px";
+  const shadowSpread = "0px";
+  const textOutlineColor = "#FFFFFF"; // Outline color
+  const textOutlineWidth = "1px"; // Outline width
+
+  const boxStyle: React.CSSProperties = {
+    backgroundColor: mockBgColor,
+    color: mockFgColor,
+    borderWidth: borderWidth,
+    borderColor: borderColor,
+    borderStyle: borderStyle,
+    boxShadow: `${shadowOffset} ${shadowOffset} ${shadowBlur} ${shadowSpread} ${shadowColor}`,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100px",
+    height: "100px",
+    fontSize: "2rem",
+    fontWeight: "bold",
+    textShadow: `-${textOutlineWidth} -${textOutlineWidth} 0 ${textOutlineColor}, ${textOutlineWidth} -${textOutlineWidth} 0 ${textOutlineColor}, -${textOutlineWidth} ${textOutlineWidth} 0 ${textOutlineColor}, ${textOutlineWidth} ${textOutlineWidth} 0 ${textOutlineColor}`,
+  };
+
+  return <div style={boxStyle}>{parsedLetter}</div>;
 };

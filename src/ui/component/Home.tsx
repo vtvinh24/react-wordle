@@ -22,6 +22,7 @@ const Home = () => {
         maxLength={10}
         
       />
+      
       <p>Score: {score}</p>
     </div>
   );

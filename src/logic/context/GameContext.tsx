@@ -1,19 +1,69 @@
-import React, { createContext, useState, ReactNode, useContext } from "react";
+import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 
-interface GameContextProps {
-  state: object;
-  setState: React.Dispatch<React.SetStateAction<object>>;
-}
+const GameContext = createContext<any>(null);
 
-const GameContext = createContext<GameContextProps | undefined>(undefined);
+const GameProvider: React.FC = ({ children }) => {
+  const [keyPressed, setKeyPressed] = useState<string>("");
 
-const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [state, setState] = useState<object>({
-    
+  const keysToPreventDefault = [
+    "F1",
+    "F2",
+    "F3",
+    "F4",
+    "F5",
+    "F6",
+    "F7",
+    "F8",
+    "F9",
+    "F10",
+    "F11",
+    "F12",
+    "Tab",
+    "CapsLock",
+    "Shift",
+    "Control",
+    "Alt",
+    "Meta",
+    "Enter",
+    "Backspace",
+    "Escape",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "Insert",
+    "Delete",
+    "Home",
+    "End",
+    "PageUp",
+    "PageDown",
+    "NumLock",
+    "ScrollLock",
+    "Pause"
+  ];
 
-  });
+  const handleKeyPress = useCallback((event: KeyboardEvent) => {
+    console.log("keyPressed", event.key);
+    if (
+      keysToPreventDefault.includes(event.key) ||
+      (event.ctrlKey && event.key === "s") ||
+      (event.altKey && event.key === "f") ||
+      (event.shiftKey && event.key === "Tab") ||
+      (event.metaKey && event.key === "r")
+    ) {
+      event.preventDefault();
+    }
+    setKeyPressed(event.key);
+  }, []);
 
-  return <GameContext.Provider value={{ state, setState }}>{children}</GameContext.Provider>;
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
+
+  return <GameContext.Provider value={{ keyPressed }}>{children}</GameContext.Provider>;
 };
 
 const useGame = () => {
