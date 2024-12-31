@@ -43,7 +43,6 @@ const GameProvider: React.FC = ({ children }) => {
   ];
 
   const handleKeyPress = useCallback((event: KeyboardEvent) => {
-    console.log("keyPressed", event.key);
     if (
       keysToPreventDefault.includes(event.key) ||
       (event.ctrlKey && event.key === "s") ||
