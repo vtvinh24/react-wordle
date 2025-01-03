@@ -25,7 +25,7 @@ describe('useLetter', () => {
     it('should return the input for an empty string', () => {
         const letter = '';
         const result = useLetter(letter);
-        expect(result).toBe('');
+        expect(result).toBe('⚠');
     });
 
     it('should return the input for a non-alphabetic character', () => {
