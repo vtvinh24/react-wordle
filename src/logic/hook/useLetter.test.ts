@@ -1,11 +1,18 @@
 import { describe, it, expect } from "vitest";
 import { useLetter } from "./useLetter";
+import { KeySymbol } from "../enum/Letter";
 
 describe("useLetter", () => {
   it("should return the function key as is", () => {
     const functionKey = "F5";
     const result = useLetter(functionKey);
     expect(result).toBe("F5");
+  });
+
+  it("should return special key as is", () => {
+    const specialKey = "Enter";
+    const result = useLetter(specialKey);
+    expect(result).toBe(KeySymbol.Enter);
   });
 
   it("should return the warn symbol for a control character", () => {
